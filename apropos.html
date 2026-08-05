@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos</title>
+    <link rel="stylesheet" href="CSS/apropos.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html"><div class="logo-box"></div></a>
+    <div class="nav-links" id="nav-links">
+      <a href="projets.html" class="btn-nav">Projets</a>
+      <a href="apropos.html" class="btn-nav active">À propos</a>
+      <a href="contact.html" class="btn-nav">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <a href="projets.html" class="btn-nav">Projets</a>
+    <a href="apropos.html" class="btn-nav">À propos</a>
+    <a href="contact.html" class="btn-nav">Contact</a>
+  </div>
+
+  <div class="status-wrap" id="status-top">
+    <div class="status-pill">En recherche alternance à partir de septembre 2026 jusqu'à septembre 2027</div>
+  </div>
+
+  <section id="about-split">
+      <div class="about-photo-side">
+          <img src="IMAGE/cv.png" alt="Armeline">
+      </div>
+
+      <div class="about-text-track" id="about-text-track">
+          <div class="about-panel">
+              <h1 class="serif-title">Moi, c'est Armeline</h1>
+
+              <div class="scroll-hint">
+                  <span>Scroll</span>
+                  <span class="scroll-hint-arrow">↓</span>
+              </div>
+
+              <div class="about-sections">
+                  <div class="about-block visible" data-index="0">
+                      <h3>L'art et la création</h3>
+                      <p>L'art et la création m'accompagnent depuis longtemps. Au collège, déjà, les cours d'arts plastiques m'ont donné
+                          le goût des projets visuels. À 15 ans, tout s'est précisé : j'ai utilisé mon premier appareil photo argentique.
+                          Les images n'étaient pas parfaites, mais c'était déjà une manière d'exprimer quelque chose. À partir de là, j'ai
+                          su que je voulais créer autrement : visuellement, sincèrement.</p>
+                  </div>
+
+                  <div class="about-block" data-index="1">
+                      <h3>Mon parcours</h3>
+                      <p>De fil en aiguille, j'ai pu construire un profil riche : Bac Pro Photo, Licence en Arts Plastiques, et aujourd'hui
+                          BUT MMI (Métiers du Multimédia et de l'Internet). Photographie, art, design, communication et développement web :
+                          rien n'est laissé au hasard. Chaque étape m'a permis de gagner en précision, en efficacité et surtout en vision.</p>
+                  </div>
+
+                  <div class="about-block" data-index="2">
+                      <h3>Mon travail</h3>
+                      <p>Aucun projet n'est trop simple ou trop complexe. Ce qui compte pour moi, c'est de m'impliquer à 100 %, de comprendre
+                          les besoins, de proposer des idées claires et de produire un travail solide. Je m'adapte, j'apprends vite et je vais
+                          au bout des choses. Mon objectif reste le même : créer du sens, avec sérieux et créativité.</p>
+                  </div>
+
+                  <div class="about-block" data-index="3">
+                      <h3>Le design</h3>
+                      <p>Le design, c'est là où tout se rejoint. C'est ce qui me permet de mettre en valeur mes idées et celles des autres.
+                          C'est là que je m'exprime le mieux. Grâce à mes bases artistiques et mes compétences techniques, je crée des projets
+                          qui marquent. C'est cette vision, cette énergie et cette polyvalence que je souhaite apporter à une équipe. Voilà pourquoi
+                          il faut travailler avec moi.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+  <footer class="footer">
+    <h3>Discutons</h3>
+    <a href="contact.html" class="btn-footer-contact">Contact</a>
+    <nav class="footer-nav">
+      
+      <a href="projets.html">Projets</a><span class="dot"></span>
+      <a href="apropos.html">À propos</a>
+    </nav>
+    <p class="copyright">Armeline Ndombasi Kibula ©2025 - tout droits réservés</p>
+  </footer>
+
+  <div class="footer-bottom-bar">
+    <a href="mention-legales.html">Mentions Légales</a>
+    <span>armelinendombasipro@gmail.com</span>
+    <a href="https://www.linkedin.com/in/armeline-ndombasi-kibula-477188256/" target="_blank">Linkedin</a>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+  <script src="JS/apropos.js"></script>
+
+</body>
+</html>

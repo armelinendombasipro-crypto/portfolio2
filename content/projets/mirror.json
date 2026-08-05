@@ -1,0 +1,23 @@
+{
+  "slug": "mirror",
+  "titre": "Mirroir",
+  "categorie": "photographie",
+  "type": "UNIVERSITAIRE",
+  "annee": "2025",
+  "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Ce projet a été réalisé dans le cadre de la matière universitaire Culture Artistique. La consigne imposait une unique contrainte : la réalisation d'un portrait artistique, tout en laissant une totale liberté sur l'interprétation. J'ai choisi de m'éloigner du portrait classique pour explorer la thématique du reflet et de l'introspection. L'objectif était d'utiliser le miroir non pas comme un simple accessoire, mais comme le prisme central permettant de déconstruire et d'interroger l'image de soi.<br><br><b>RÉALISATIONS MÉTIERS</b><br>Pour répondre à ce sujet, j'ai assuré la direction artistique et la réalisation technique. J'ai conçu une mise en scène centrée sur un miroir brisé pour capturer les multiples facettes d'un visage féminin. L'idée du bris de glace visait à symboliser la complexité de l'identité et la perception parfois fragmentée que l'on a de sa propre personne. J'ai travaillé sur les angles et les jeux de lumière pour que chaque éclat de verre renvoie une expression différente, créant ainsi un portrait psychologique à travers la photographie.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce travail personnel a été l'occasion de mettre en avant et de perfectionner mes compétences en photographie. Il m'a permis de développer ma capacité à conceptualiser une idée abstraite pour la traduire visuellement avec esthétisme, tout en confirmant ma sensibilité artistique pour la composition et la narration par l'image.",
+  "imagesPrincipales": [
+    "IMAGE/photographie/_imageR.jpg",
+    "IMAGE/photographie/_MG_5487.png"
+  ],
+  "competences": [
+    "photographie"
+  ],
+  "outils": [
+    "photoshop",
+    "canon 80d"
+  ],
+  "galerie": [
+    "IMAGE/photographie/_MG_5503.png"
+  ],
+  "vignette": "IMAGE/photographie/_imageR.jpg"
+}

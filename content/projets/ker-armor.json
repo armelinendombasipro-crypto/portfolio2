@@ -1,0 +1,25 @@
+{
+  "slug": "ker-armor",
+  "titre": "Ker Armor",
+  "categorie": "ui-ux",
+  "type": "UNIVERSITAIRE",
+  "annee": "2025",
+  "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Réalisé en 2025 dans un cadre universitaire, ce projet consistait à élaborer une stratégie de référencement naturel (SEO) complète pour une agence immobilière fictive basée dans les Côtes d’Armor. L’objectif principal était de structurer la visibilité de l’agence sur trois pages types : l’accueil, la liste des lots et le détail d'un bien. En binôme, nous avons collaboré sur l’audit sémantique pour sélectionner 30 mots-clés stratégiques répartis entre courte, moyenne et longue traîne.<br><br><b>RÉALISATIONS</b><br>Au sein de cette collaboration, je me suis particulièrement investi dans la conception graphique et l'UI Design des interfaces. J'ai pris en charge la création de l'intégralité des assets visuels, le design des composants (boutons cliquables, FAQ interactive) et le prototypage sur Figma. Mon rôle a été de traduire la stratégie SEO en une interface utilisateur (UX) cohérente, assurant ainsi que l'optimisation technique serve directement la navigation client.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce travail à 50/50 avec ma binôme a nécessité une organisation rigoureuse et une communication constante pour harmoniser le design avec les exigences du référencement. J'ai su faire preuve d'esprit d'équipe et d'autonomie dans la gestion de mes livrables graphiques. Ce projet confirme ma capacité à intégrer des contraintes de marketing digital (SEO) dans une démarche créative de conception d'interfaces.",
+  "imagesPrincipales": [
+    "IMAGE/UIUXdesign/KerArmor.png",
+    "IMAGE/UIUXdesign/KerArmor3.jpeg"
+  ],
+  "figmaUrl": "https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/VeKYIZa7djG8jxomPqa3LY/R306-Ker-Armor?page-id=0%3A1&node-id=169-61&viewport=183%2C-650%2C0.27&t=Jc0o3i39OkeKUw9b-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=169%3A61&show-proto-sidebar=1",
+  "outils": [
+    "Figma"
+  ],
+  "competences": [
+    "UI/UX Design",
+    "Stratégie SEO",
+    "Audit Sémantique",
+    "Prototypage",
+    "Travail d'équipe"
+  ],
+  "galerie": [],
+  "vignette": "IMAGE/UIUXdesign/KerArmor.png"
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "kcompany",
+  "titre": "Kibula'sCompany",
+  "categorie": "graphisme",
+  "type": "UNIVERSITAIRE",
+  "annee": "2025",
+  "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Ce projet universitaire consistait à réaliser la refonte complète du magazine Causette. L'objectif était de moderniser l'identité visuelle du titre tout en plaçant la condition féminine au cœur de la réflexion. J'ai conçu un support interactif de 18 pages structuré autour de trois zones d'importance qui explorent la figure de la femme, de sa perception intime à sa reconstruction sociale.<br><br><b>RÉALISATIONS MÉTIERS</b><br>J'ai assuré l'intégralité de la conception graphique et de la ligne éditoriale, en utilisant le violet comme fil conducteur pour symboliser la lutte et la dignité des femmes. La maquette s'articule autour d'une progression narrative et visuelle forte : Le miroir des apparences (L'identité) : Une zone dédiée à la perception de soi, où le design utilise des formes en triangle évoquant les éclats d'un miroir brisé par les diktats esthétiques. La réalité des faits (La violence) : Ce volet traite de la femme brisée par la brutalité du réel à travers les œuvres de Nan Goldin et Donna Ferrato. Visuellement, j'ai appliqué des aplat violets transparents sur certaines images pour traduire la pudeur, la douleur et la marque indélébile des violences conjugales. L’homme qui sauve les femmes (La résilience) : Cette partie met en lumière le travail du Dr Mukwege. Pour souligner l'importance de sa parole, j'ai utilisé de grandes accolades graphiques (ou guillemets stylisés) mettant en exergue des citations puissantes issues de son livre Réparer les femmes.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>La réalisation de ce magazine de 18 pages a été un véritable défi technique et créatif, marquant ma première expérience de conception d'un support complet de A à Z. Ce projet m'a permis de perfectionner ma maîtrise de la chaîne graphique, de la gestion des gabarits à l'interactivité avancée. J'ai appris à traiter des thématiques sociales fortes avec une esthétique soignée, confirmant ainsi mes compétences en design éditorial et en conception de supports interactifs tout en consolidant ma capacité à structurer un projet complexe de manière autonome.",
+  "imagesPrincipales": [
+    "IMAGE/design-graphique/KibulasCompany-Logo.png"
+  ],
+  "carousselPrefixe": "IMAGE/design-graphique/KibulasCompany-page-",
+  "carousselTotalPages": 15,
+  "competences": [
+    "Charte Graphique"
+  ],
+  "outils": [
+    "Illustrator"
+  ],
+  "galerie": [],
+  "vignette": "IMAGE/design-graphique/KibulasCompany-Logo.png"
+}

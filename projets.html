@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets</title>
+    <link rel="stylesheet" href="CSS/projets.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html"><div class="logo-box"></div></a>
+    <div class="nav-links" id="nav-links">
+      <a href="projets.html" class="btn-nav active">Projets</a>
+      <a href="apropos.html" class="btn-nav">À propos</a>
+      <a href="contact.html" class="btn-nav">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <a href="projets.html" class="btn-nav">Projets</a>
+    <a href="apropos.html" class="btn-nav">À propos</a>
+    <a href="contact.html" class="btn-nav">Contact</a>
+  </div>
+
+  <div class="status-wrap" id="status-top">
+    <div class="status-pill">En recherche alternance à partir de septembre 2026 jusqu'à septembre 2027</div>
+  </div>
+
+  <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="graphisme">Design graphique</button>
+      <button class="filter-btn" data-filter="ui-ux">UI/UX design</button>
+      <button class="filter-btn" data-filter="photographie">Photographie</button>
+      <button class="filter-btn" data-filter="audiovisuel">Audiovisuel</button>
+  </div>
+
+  <main class="main-wrapper">
+      <!-- Un seul projet "template" ici : le back-office dupliquera ce même modèle
+      <!-- Cette grille est remplie automatiquement par projets.js à partir des
+           fichiers dans content/projets/ (gérés via le back-office Sveltia CMS). -->
+      <section id="projects-grid-section" class="projects-container">
+          <div class="projects-grid">
+          </div>
+      </section>
+
+      <section id="project-details" style="display: none;">
+          <div class="detail-content">
+              <div class="detail-main">
+                  <div class="project-images-col"></div>
+
+                  <div class="detail-text">
+                      <div class="project-header">
+                          <h2 id="display-title"></h2>
+                          <div class="display-tags">
+                              <span id="display-tag-type" class="project-tag"></span>
+                              <span id="display-tag-year" class="project-tag"></span>
+                          </div>
+                      </div>
+
+                      <div id="display-desc"></div>
+                      <div class="project-specs">
+                          <div class="info-section">
+                              <span class="info-label">Compétences acquises : </span>
+                              <div id="display-competences" class="badges-row"></div>
+                          </div>
+                          <div class="info-section">
+                              <span class="info-label">Outils utilisé (s) :</span>
+                              <div id="display-outils" class="badges-row"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div id="detail-galerie"></div>
+              <div id="lightbox" onclick="this.style.display='none'">
+                  <span class="close-lightbox">&times;</span>
+                  <img id="lightbox-img" src="" alt="">
+              </div>
+              <div id="voir-aussi-section" class="voir-aussi-container" style="display: none;">
+                  <h3 class="voir-aussi-titre">Voir aussi</h3>
+                  <div class="projects-grid" id="voir-aussi-grid"></div>
+              </div>
+          </div>
+      </section>
+
+  </main>
+
+  <footer class="footer">
+    <h3>Discutons</h3>
+    <a href="contact.html" class="btn-footer-contact">Contact</a>
+    <nav class="footer-nav">
+      
+      <a href="projets.html">Projets</a><span class="dot"></span>
+      <a href="apropos.html">À propos</a>
+    </nav>
+    <p class="copyright">Armeline Ndombasi Kibula ©2025 - tout droits réservés</p>
+  </footer>
+
+  <div class="footer-bottom-bar">
+    <a href="#">Mentions Légales</a>
+    <span>armelinendombasipro@gmail.com</span>
+    <a href="#" target="_blank">Linkedin</a>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+  <script src="JS/projets.js"></script>
+  <script src="JS/btn-filtre.js"></script>
+  <script>
+    const navbar = document.querySelector('.navbar');
+    const statusTop = document.getElementById('status-top');
+    function onScrollNav(){
+      const scrolled = window.scrollY > 40;
+      navbar.classList.toggle('scrolled', scrolled);
+      statusTop.classList.toggle('scrolled', scrolled);
+    }
+    window.addEventListener('scroll', onScrollNav);
+    onScrollNav();
+
+    const backToTop = document.getElementById('back-to-top');
+    function onScrollBackToTop(){
+      const nearBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 40);
+      backToTop.classList.toggle('visible', nearBottom);
+    }
+    window.addEventListener('scroll', onScrollBackToTop);
+    onScrollBackToTop();
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

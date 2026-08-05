@@ -1,7 +1,7 @@
 backend:
   name: github
   # ⚠️ À REMPLIR : remplace par "ton-pseudo-github/nom-du-depot" une fois le dépôt créé
-  repo: TON-PSEUDO-GITHUB/TON-DEPOT
+  repo: armelinendombasipro-crypto/portfolio2
   branch: main
 
 # Dossier où seront rangées les images que tu ajoutes depuis le back-office

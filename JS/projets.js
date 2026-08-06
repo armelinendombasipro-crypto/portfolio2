@@ -50,15 +50,18 @@ async function chargerProjets() {
 function genererGrille() {
   const grid = document.querySelector('#projects-grid-section .projects-grid');
   if (!grid) return;
-  grid.innerHTML = Object.values(dataProjets).map(p => `
-    <a href="javascript:void(0)" class="project-card-link" onclick="ouvrirProjet('${p.slug}'); return false;" data-category="${p.categorie}" data-project="${p.slug}">
+  const projetsTries = Object.values(dataProjets).sort((a, b) => (a.ordre || 999) - (b.ordre || 999));
+  grid.innerHTML = projetsTries.map(p => {
+    const categories = Array.isArray(p.categorie) ? p.categorie.join(' ') : (p.categorie || '');
+    return `
+    <a href="javascript:void(0)" class="project-card-link" onclick="ouvrirProjet('${p.slug}'); return false;" data-category="${categories}" data-project="${p.slug}">
         <div class="project-tag tag-uni">${p.type || 'UNIVERSITAIRE'}</div>
         <div class="project-box">
           <div class="project-box-img" style="background-image:url('${p.vignette || ''}');"></div>
         </div>
         <div class="project-tag tag-year">${p.annee || ''}</div>
     </a>
-  `).join('');
+  `}).join('');
 }
 
   

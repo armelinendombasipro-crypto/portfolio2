@@ -13,10 +13,10 @@ collections:
     label: "Projets"
     label_singular: "Projet"
     folder: "content/projets"
-    create: true
-    delete: true
     extension: json
     format: json
+    create: true
+    delete: true
     slug: "{{fields.slug}}"
     identifier_field: "titre"
     summary: "{{titre}} — {{categorie}}"
@@ -30,9 +30,11 @@ collections:
         name: "titre"
         widget: "string"
 
-      - label: "Catégorie"
+      - label: "Catégorie(s)"
         name: "categorie"
         widget: "select"
+        multiple: true
+        hint: "Tu peux en choisir plusieurs si un projet touche à plusieurs domaines."
         options:
           - { label: "Design graphique", value: "graphisme" }
           - { label: "UI/UX design", value: "ui-ux" }
@@ -47,6 +49,13 @@ collections:
       - label: "Année"
         name: "annee"
         widget: "string"
+
+      - label: "Ordre d'affichage"
+        name: "ordre"
+        widget: "number"
+        value_type: "int"
+        default: 1
+        hint: "1 = en premier sur la page Projets. Change ce numéro pour ranger tes projets exactement comme tu veux, sans jamais toucher au code."
 
       - label: "Vignette (image affichée sur la carte, page Projets)"
         name: "vignette"

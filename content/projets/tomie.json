@@ -1,7 +1,9 @@
 {
   "slug": "tomie",
   "titre": "Tomie",
-  "categorie": "ui-ux",
+  "categorie": [
+    "ui-ux"
+  ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Ce projet universitaire consistait à créer un site web statique mettant en avant une œuvre de bande dessinée ou un animé. J'ai choisi de travailler sur le manga d'horreur 'Tomie' de Junji Ito. L'objectif était de structurer un site complet comprenant une présentation de l'intrigue, une biographie de l'auteur, une galerie de planches et une section transmédia explorant les adaptations en films et séries.<br><br><b>RÉALISATIONS</b><br>Pour commencer, j'ai réalisé une planche d'influence et une planche tendance pour définir l'univers visuel sombre du site. J'ai ensuite conçu les maquettes sur Figma avant de passer à la réalisation concrète sur le CMS Jimdo. J'ai dû organiser le contenu de manière sémantique sur plusieurs pages, intégrer des médias variés et respecter la contrainte technique d'ajouter un GIF animé pour dynamiser l'interface tout en restant fidèle à l'ambiance fascinante du manga.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet m'a permis d'apprendre à traduire une analyse des besoins en une interface fluide et fonctionnelle. J'ai su adapter mon design aux contraintes d'un template tout en personnalisant l'expérience utilisateur pour plonger les visiteurs dans l'univers de l'horreur. Cette expérience confirme ma capacité à gérer un projet de création web de A à Z, de la phase de recherche graphique jusqu'à la mise en ligne sur un CMS.",
@@ -24,5 +26,6 @@
     "IMAGE/UIUXdesign/carnage.png",
     "IMAGE/UIUXdesign/PlancheT.png"
   ],
-  "vignette": "IMAGE/UIUXdesign/tomie.jpeg"
+  "vignette": "IMAGE/UIUXdesign/tomie.jpeg",
+  "ordre": 6
 }

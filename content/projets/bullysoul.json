@@ -1,0 +1,29 @@
+{
+  "slug": "bullysoul",
+  "titre": "Bullysoul",
+  "categorie": [
+    "graphisme"
+  ],
+  "type": "PROFESSIONNEL",
+  "annee": "2025",
+  "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Dans le cadre du lancement de Bullysoul, une nouvelle marque d'accessoires en crochet, j'ai eu la responsabilité de concevoir l'identité visuelle promotionnelle du projet. L'objectif était de créer un univers graphique fort et cohérent pour accompagner la sortie des produits, en mêlant esthétique artisanale et codes visuels modernes.<br><br><b>RÉALISATIONS MÉTIERS</b><br>Pour donner vie à cette campagne, j'ai assuré la direction artistique globale du projet, de la pré-production à la post-production. J'ai d'abord organisé et supervisé le shooting photo, en dirigeant le posing pour mettre en valeur les créations.<br><br>Une fois les images capturées, j'ai collaboré étroitement avec un collègue chargé des retouches techniques. À partir de ces visuels, j'ai conçu une série d'affiches promotionnelles en utilisant des techniques de photomontage pour créer un impact visuel immédiat. En parallèle, j'ai réalisé une refonte du logo en 3D, ajoutant une dimension de profondeur et de modernité à l'identité de la marque, afin qu'il s'intègre parfaitement aux différents supports de communication.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet a marqué ma première véritable expérience en tant que Directeur Artistique. Il m'a permis de développer des compétences clés en gestion d'équipe et en coordination de projet. J'ai appris à orchestrer les talents de chacun et à respecter des délais stricts, tout en garantissant une vision artistique cohérente du début à la fin de la production.",
+  "imagesPrincipales": [
+    "IMAGE/design-graphique/logo-bullysoul.png",
+    "IMAGE/design-graphique/affiche-rose.jpg",
+    "IMAGE/design-graphique/affiche-bleu.png"
+  ],
+  "competences": [
+    "photographie"
+  ],
+  "outils": [
+    "photoshop",
+    "illustrator",
+    "Lightroom"
+  ],
+  "galerie": [
+    "IMAGE/design-graphique/affiche-rose.jpg",
+    "IMAGE/design-graphique/affiche-bleu.png"
+  ],
+  "vignette": "IMAGE/design-graphique/logo-bullysoul.png",
+  "ordre": 11
+}

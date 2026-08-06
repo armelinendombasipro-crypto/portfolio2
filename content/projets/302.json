@@ -1,7 +1,9 @@
 {
   "slug": "302",
   "titre": "SAE 302",
-  "categorie": "audiovisuel",
+  "categorie": [
+    "audiovisuel"
+  ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Ce projet, réalisé dans le cadre d'une SAE (Situation d'Apprentissage et d'Évaluation), consistait à créer de toutes pièces une ONG fictive dédiée à la lutte contre les violences conjugales : 'À cœur ouvert'. Avec mon équipe de 9 étudiants, notre mission était de concevoir un espace d’écoute et de soutien accessible 24h/24 et 7j/7.<br><br><b>RÉALISATIONS MÉTIERS</b><br>Pour donner vie à cette ONG, nous avons produit un écosystème de communication complet : planche tendance, affiches, charte graphique, vidéos de prévention, site web et ligne éditoriale. J'ai été responsable de la partie audiovisuelle, de la scénarisation au montage final des deux publicités de prévention.<br><br>Pour la première, le synopsis suit Jean qui, après avoir subi une violence de sa femme Nicole, finit par appeler l’association. Le message final, « La violence n’a pas de genre, notre ONG s’occupe de toutes les victimes », rappelle que tout le monde peut être concerné. La seconde vidéo met en scène Aurora, qui utilise le bouton de secours du site pour masquer sa navigation à l'arrivée de son mari. J'ai réalisé ces scénarios et effectué le montage pour traduire visuellement la tension et l'urgence de ces situations tout en respectant l'identité de l'ONG.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Travailler au sein d'un groupe de 9 personnes a été une expérience humaine et professionnelle intense. Ce projet m'a permis de développer ma capacité à traiter des sujets sensibles avec justesse et de confirmer mes compétences en réalisation vidéo au service d'une cause sociale.",
@@ -25,5 +27,6 @@
     "IMAGE/audiovisuel/302-img3.png",
     "IMAGE/audiovisuel/302-RS.png"
   ],
-  "vignette": "IMAGE/UIUXdesign/302.png"
+  "vignette": "IMAGE/UIUXdesign/302.png",
+  "ordre": 3
 }

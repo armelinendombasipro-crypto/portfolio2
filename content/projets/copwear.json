@@ -1,7 +1,9 @@
 {
   "slug": "copwear",
   "titre": "Cop&Wear",
-  "categorie": "graphisme",
+  "categorie": [
+    "graphisme"
+  ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Né de la rencontre de 6 esprits créatifs à l'IUT de Bobigny en 2024, Cop&Wear est un concept store international et nomade dédié à la promotion de créateurs et de marques indépendantes émergentes à travers le monde. L'objectif principal de ce projet de fin d'études était de concevoir l'écosystème de communication complet d'une boutique éphémère (pop-up store) exclusive, offrant une plateforme globale aux jeunes talents internationaux (Europe, Asie, Afrique, Amérique) pour leur permettre de toucher un large public hors des grandes enseignes, sous le slogan fort : <i>« La mode sans frontière »</i>.<br><br><b>RÉALISATIONS MÉTIERS</b><br>Au sein de cette agence étudiante, j'ai assumé un rôle central en prenant en charge l'intégralité de la <b>Direction Artistique</b>, de la <b>charte graphique</b> et de la <b>production audiovisuelle</b>, tout en rédigeant une grande partie du cahier des charges stratégique.<br><br>J'ai conçu l'identité visuelle de la marque à travers son logotype : un grand esperluette ('&') texturé façon denim symbolisant l'univers textile, associé à une typographie à empattements élégante bleu roi. Côté com', j'ai réalisé les affiches publicitaires événementielles ainsi que les maquettes du site vitrine multilingue sur Figma. J'ai également entièrement scénarisé et monté le film publicitaire (Teaser/Trailer) destiné à créer la <i>hype</i> sur TikTok et Instagram, en adoptant un ton authentique, engagé et proche des communautés urbaines, parfaitement aligné avec le slogan de la marque : <i>« You see it, you cop it »</i>.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet d'envergure, estimé à un budget théorique de 38 350 € HT, m'a permis de valider des compétences pointues en gestion de projet, en logistique événementielle et en stratégie de communication de marque (gestion des RP, rédaction de communiqués de presse). Travailler en équipe sur un rétroplanning serré de plusieurs mois a renforcé mon autonomie et ma capacité à traduire un concept marketing complexe en un univers visuel fort, cohérent et immédiatement identifiable.",
@@ -22,5 +24,6 @@
   "galerie": [
     "IMAGE/design-graphique/copwear.png"
   ],
-  "vignette": "IMAGE/design-graphique/copwear.png"
+  "vignette": "IMAGE/design-graphique/copwear.png",
+  "ordre": 7
 }

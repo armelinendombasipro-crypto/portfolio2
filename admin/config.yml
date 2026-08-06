@@ -13,10 +13,10 @@ collections:
     label: "Projets"
     label_singular: "Projet"
     folder: "content/projets"
-    extension: json
-       format: json
     create: true
     delete: true
+    extension: json
+    format: json
     slug: "{{fields.slug}}"
     identifier_field: "titre"
     summary: "{{titre}} — {{categorie}}"

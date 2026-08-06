@@ -6,7 +6,7 @@
   ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
-  "ordre": 1,
+  "ordre": 2,
   "vignette": "/IMAGE/keys1.png",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Projet universitaire réalisé en 2026 : concevoir l'identité visuelle d'un coffret collector célébrant les 20 ans de carrière d'Alicia Keys (vinyle, livret, goodies). En équipe de trois, l'objectif était de construire une expérience éditoriale haut de gamme autour d'une double thématique : héritage des débuts et renaissance artistique.<br><br><b>RÉALISATIONS</b><br>J'ai porté la Direction Artistique globale, validée par toute l'équipe : identité chromatique marron profond (piano du premier album) / doré texturé (renaissance après Out of the Ashes). J'ai conçu l'intégralité du livret (graphisme, mise en page, UI/UX), défini la charte typographique (Koulen + Inter) pour casser les codes du luxe, imaginé un composant interactif (bloc doré à gratter), et décliné l'univers sur une série de stickers exclusifs.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet a révélé mon leadership créatif : fédérer une équipe autour d'une vision tout en respectant les contraintes physiques et digitales du support. Rigueur (grilles InDesign), autonomie, et capacité à piloter une direction artistique de A à Z, du concept aux produits dérivés.",
   "competences": [
@@ -21,12 +21,12 @@
     "Figma"
   ],
   "imagesPrincipales": [
-    "IMAGE/design-graphique/keys1.png",
-    "IMAGE/design-graphique/keys5.png",
-    "VIDÉO/motion-keys.mp4"
+    "/IMAGE/keys1.png",
+    "/IMAGE/keys5.png",
+    "/IMAGE/motion-keys.mp4"
   ],
   "galerie": [
-    "IMAGE/design-graphique/planche-tendanceK.png",
+    "/IMAGE/Planche-rechercheK1.png",
     "IMAGE/design-graphique/Planche-rechercheK1.png",
     "IMAGE/design-graphique/Planche-rechercheK2.png",
     "IMAGE/design-graphique/coffret.png",

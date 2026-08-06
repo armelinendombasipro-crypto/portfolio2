@@ -104,6 +104,16 @@ function genererGrille() {
     return /\.(mp4|mov|webm|ogg)$/i.test(url.trim());
   }
 
+  // Les images/vidéos ajoutées à la main dans le code sont de simples chaînes ("chemin.jpg"),
+  // mais celles ajoutées depuis le back-office Sveltia sont enregistrées comme des objets
+  // ({item: "chemin.jpg"}) à cause du champ "field:" utilisé dans admin/config.yml.
+  // Cette fonction accepte les deux formats pour ne rien casser.
+  function extraireURL(entree) {
+    if (typeof entree === 'string') return entree;
+    if (entree && typeof entree === 'object') return entree.item || entree.url || entree.image || entree.file || '';
+    return '';
+  }
+
   function ouvrirProjet(id) {
       const projet = dataProjets[id];
       if(!projet) return;
@@ -173,7 +183,9 @@ function genererGrille() {
           
           // On ajoute les images d'abord
           if (projet.imagesPrincipales) {
-              projet.imagesPrincipales.forEach(url => {
+              projet.imagesPrincipales.forEach(entree => {
+                  const url = extraireURL(entree);
+                  if (!url) return;
                   if (estVideo(url)) {
                       // Création d'un lecteur vidéo
                       const video = document.createElement('video');
@@ -259,7 +271,9 @@ function genererGrille() {
          // --- GALERIE ---
          if (projet.galerie && galerieDiv) {
           galerieDiv.innerHTML = ""; // On vide la galerie aussi
-          projet.galerie.forEach(url => {
+          projet.galerie.forEach(entree => {
+              const url = extraireURL(entree);
+              if (!url) return;
               if (estVideo(url)) {
                   // Création d'un lecteur vidéo (comme dans la colonne principale)
                   const video = document.createElement('video');
@@ -280,8 +294,25 @@ function genererGrille() {
                       const lightboxImg = document.getElementById('lightbox-img');
 
                       if(lightbox && lightboxImg) {
-                          lightboxImg.src = this.src; // On met l'image en grand
-                          lightbox.style.display = 'flex';
+                          // On déplace la lightbox directement dans <body>, au cas où un
+                          // élément parent l'empêcherait de se positionner par-dessus tout.
+                          if (lightbox.parentElement !== document.body) {
+                              document.body.appendChild(lightbox);
+                          }
+                          lightboxImg.src = this.src;
+
+                          // Styles forcés en JS pour garantir le bon rendu (plein écran,
+                          // centré, au-dessus de tout) même si le CSS n'est pas à jour.
+                          Object.assign(lightbox.style, {
+                              display: 'flex',
+                              position: 'fixed',
+                              top: '0', left: '0',
+                              width: '100vw', height: '100vh',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              zIndex: '99999'
+                          });
+                          window.scrollTo({ top: window.scrollY, behavior: 'instant' });
                           requestAnimationFrame(() => lightbox.classList.add('visible'));
                       }
                   };
@@ -314,7 +345,7 @@ function genererGrille() {
           for (const [key, autreProjet] of Object.entries(dataProjets)) {
               if (autreProjet.categorie === projet.categorie && key !== id) {
                   compteSuggestions++;
-                  const thumbUrl = autreProjet.vignette || (autreProjet.imagesPrincipales ? autreProjet.imagesPrincipales[0] : '');
+                  const thumbUrl = autreProjet.vignette || extraireURL(autreProjet.imagesPrincipales ? autreProjet.imagesPrincipales[0] : '');
                   const typeTexte = autreProjet.type || '';
                   const anneeTexte = autreProjet.annee || '';
                   

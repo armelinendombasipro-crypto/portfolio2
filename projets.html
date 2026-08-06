@@ -77,7 +77,7 @@
               </div>
 
               <div id="detail-galerie"></div>
-              <div id="lightbox" onclick="this.style.display='none'">
+              <div id="lightbox" onclick="this.classList.remove('visible'); setTimeout(() => this.style.display='none', 300);">
                   <span class="close-lightbox">&times;</span>
                   <img id="lightbox-img" src="" alt="">
               </div>

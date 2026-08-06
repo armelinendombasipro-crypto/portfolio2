@@ -23,9 +23,9 @@
     "/IMAGE/motion-keys.mp4"
   ],
   "galerie": [
-    "IMAGE/design-graphique/planche-tendanceK.png",
-    "IMAGE/design-graphique/Planche-rechercheK1.png",
-    "IMAGE/design-graphique/Planche-rechercheK2.png",
+    "/IMAGE/planche-tendanceK.png",
+    "/IMAGE/Planche-rechercheK1.png",
+    "/IMAGE/Planche-rechercheK2.png",
     "IMAGE/design-graphique/coffret.png",
     "IMAGE/design-graphique/keys2.png",
     "IMAGE/design-graphique/keys3.png",

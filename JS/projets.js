@@ -8,8 +8,8 @@
 // ==========================================================
 
 // ⚠️ À REMPLIR une fois le dépôt GitHub créé (voir instructions fournies)
-const GITHUB_USER = "TON-PSEUDO-GITHUB";
-const GITHUB_REPO = "TON-DEPOT";
+const GITHUB_USER = "armelinendombasipro-crypto";
+const GITHUB_REPO = "portfolio2";
 const PROJETS_PATH = "content/projets";
 
 let dataProjets = {};

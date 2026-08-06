@@ -13,6 +13,8 @@ collections:
     label: "Projets"
     label_singular: "Projet"
     folder: "content/projets"
+    extension: json
+       format: json
     create: true
     delete: true
     slug: "{{fields.slug}}"

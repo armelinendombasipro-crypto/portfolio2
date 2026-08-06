@@ -452,14 +452,25 @@ body{
   z-index:2000;
   top:0; left:0;
   width:100%; height:100%;
-  background:rgba(0,0,0,0.9);
+  background:rgba(20,18,22,0.75);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
   justify-content:center;
   align-items:center;
+  opacity:0;
+  transition:opacity .3s ease;
 }
+#lightbox.visible{opacity:1;}
 #lightbox-img{
   max-width:90%;
   max-height:80%;
-  box-shadow:0 0 20px rgba(0,0,0,0.5);
+  border:1px solid var(--argent-fonce);
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+  transform:scale(0.85);
+  transition:transform .3s ease;
+}
+#lightbox.visible #lightbox-img{
+  transform:scale(1);
 }
 .close-lightbox{
   position:absolute;

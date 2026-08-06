@@ -86,10 +86,10 @@ collections:
         field: { label: "Fichier", name: "item", widget: "file" }
         hint: "Pour une vidéo, si elle n'apparaît pas dans le sélecteur, colle son chemin à la main, ex : VIDÉO/mon-fichier.mp4"
 
-      - label: "Galerie (photos en bas de page)"
+      - label: "Galerie (photos ou vidéos en bas de page)"
         name: "galerie"
         widget: "list"
-        field: { label: "Image", name: "item", widget: "image" }
+        field: { label: "Fichier (photo ou vidéo)", name: "item", widget: "file", required: false }
         required: false
 
       - label: "Lien externe (Figma, InDesign, site en ligne...)"

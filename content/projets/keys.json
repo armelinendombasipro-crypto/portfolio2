@@ -6,25 +6,24 @@
   ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
-  "description": [
-    "<b>CONTEXTE ET OBJECTIFS</b><br>Réalisé en 2026 dans un cadre universitaire, ce projet consistait à concevoir l'identité visuelle et l'univers graphique d'un coffret collector célébrant les 20 ans de carrière de l'artiste Alicia Keys. L'objectif principal était de structurer une proposition éditoriale et événementielle complète (vinyle, livret, goodies) autour d'une double thématique forte : l'héritage de ses débuts et sa renaissance artistique. En équipe de trois, nous devions collaborer sur la stratégie globale et la cohérence de l'offre, tout en développant une expérience utilisateur (UX) immersive et haut de gamme.<br><br><b>RÉALISATIONS</b><br>Au sein de cette collaboration, j'ai pris une place centrale en développant la Direction Artistique globale du projet, qui a été validée et adoptée par l'ensemble de mon équipe. J'ai conçu une identité chromatique forte basée sur le contraste entre un marron profond, clin d'œil organique au bois du piano de son premier album, et un doré texturé, symbole de sa renaissance après la dépression (album Out of the Ashes). J'ai pris en charge l'intégralité de la conception graphique, de la mise en page et de l'UI/UX Design du livret éditorial destiné à être inséré dans le coffret vinyle. J'ai défini la charte typographique en associant la force urbaine de la Koulen à la modernité de la Inter (polices Sans-Sérif) pour casser les codes traditionnels du luxe. J'ai également imaginé et modélisé des composants interactifs innovants, notamment un système de bloc d'or à gratter pour engager l'utilisateur. Enfin, j'ai étendu cet univers en concevant une série de stickers exclusifs inclus dans le coffret, déclinant ainsi la charte graphique sur des produits dérivés physiques.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet, mené en équipe, a mis en valeur mon leadership créatif puisque j'ai su fédérer mon groupe autour de ma vision artistique tout en respectant les contraintes du support physique (le vinyle, l'édition de goodies) et du digital. J'ai fait preuve d'autonomie, de rigueur dans mes grilles de mise en page InDesign, et d'une grande capacité à décliner une identité visuelle sur différents supports. Ce travail confirme ma faculté à piloter une direction artistique de A à Z, à concevoir des objets éditoriaux complexes ainsi que des produits dérivés d'un niveau professionnel."
-  ],
-  "imagesPrincipales": [
-    "IMAGE/design-graphique/keys1.png",
-    "IMAGE/design-graphique/keys5.png",
-    "VIDÉO/motion-keys.mp4"
-  ],
-  "urlProjet": "https://indd.adobe.com/view/188e62ae-62bf-478d-b62e-f7b8cd00f9f3",
-  "outils": [
-    "Indesign",
-    "Photoshop",
-    "Figma"
-  ],
+  "ordre": 1,
+  "vignette": "/IMAGE/keys1.png",
+  "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Projet universitaire réalisé en 2026 : concevoir l'identité visuelle d'un coffret collector célébrant les 20 ans de carrière d'Alicia Keys (vinyle, livret, goodies). En équipe de trois, l'objectif était de construire une expérience éditoriale haut de gamme autour d'une double thématique : héritage des débuts et renaissance artistique.<br><br><b>RÉALISATIONS</b><br>J'ai porté la Direction Artistique globale, validée par toute l'équipe : identité chromatique marron profond (piano du premier album) / doré texturé (renaissance après Out of the Ashes). J'ai conçu l'intégralité du livret (graphisme, mise en page, UI/UX), défini la charte typographique (Koulen + Inter) pour casser les codes du luxe, imaginé un composant interactif (bloc doré à gratter), et décliné l'univers sur une série de stickers exclusifs.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet a révélé mon leadership créatif : fédérer une équipe autour d'une vision tout en respectant les contraintes physiques et digitales du support. Rigueur (grilles InDesign), autonomie, et capacité à piloter une direction artistique de A à Z, du concept aux produits dérivés.",
   "competences": [
     "Conception Éditoriale",
     "PAO",
     "Direction Artistique",
     "Travail d'équipe"
+  ],
+  "outils": [
+    "Indesign",
+    "Photoshop",
+    "Figma"
+  ],
+  "imagesPrincipales": [
+    "IMAGE/design-graphique/keys1.png",
+    "IMAGE/design-graphique/keys5.png",
+    "VIDÉO/motion-keys.mp4"
   ],
   "galerie": [
     "IMAGE/design-graphique/planche-tendanceK.png",
@@ -36,6 +35,5 @@
     "IMAGE/design-graphique/keys7.png",
     "IMAGE/design-graphique/keys6.png"
   ],
-  "vignette": "IMAGE/design-graphique/keys1.png",
-  "ordre": 2
+  "urlProjet": "https://indd.adobe.com/view/188e62ae-62bf-478d-b62e-f7b8cd00f9f3"
 }

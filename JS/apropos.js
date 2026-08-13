@@ -1,3 +1,22 @@
+// Va chercher la photo réglée dans le back-office (content/apropos.json)
+// et remplace le fond violet par la vraie image.
+async function chargerPhotoApropos() {
+  try {
+    const data = await fetch('content/apropos.json').then(r => r.json());
+    if (data.photo) {
+      const photoSide = document.querySelector('.about-photo-side');
+      const img = photoSide ? photoSide.querySelector('img') : null;
+      if (img) {
+        img.src = data.photo;
+        photoSide.style.background = 'none'; // on retire le placeholder violet
+      }
+    }
+  } catch (e) {
+    console.warn("Impossible de charger la photo de la page à propos :", e);
+  }
+}
+document.addEventListener('DOMContentLoaded', chargerPhotoApropos);
+
 const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

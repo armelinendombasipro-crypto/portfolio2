@@ -6,21 +6,22 @@
   ],
   "type": "PROFESSIONNEL",
   "annee": "2026",
+  "ordre": 1,
+  "vignette": "/IMAGE/slow-logo.png",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Réalisé en 2026 dans le cadre de mon stage, ce projet consistait à concevoir et réaliser entièrement un tout nouveau format de contenu dynamique intitulé \"Le Coin Lecture\" pour la Slow Galerie, tout en assurant la couverture audiovisuelle globale de la vie de la galerie. L'objectif principal était de valoriser la bibliothèque physique de la galerie en connectant ses ouvrages d'art avec le travail d'illustration des artistes exposés, mais aussi de dynamiser sa communication digitale en capturant l'essence des événements physiques. En totale autonomie, je devais structurer une proposition éditoriale et audiovisuelle captivante pour engager notre communauté sur tous les fronts.<br><br><b>RÉALISATIONS</b><br>Au sein de cette expérience professionnelle, j'ai pris en charge l'intégralité de la production de contenus de la galerie. En plus de concevoir \"Le Coin Lecture\" (recherche, rédaction de scripts, storytelling, tournage face caméra et voix-off), j'ai piloté la couverture vidéo de tous les moments forts de la structure. J'ai ainsi filmé et réalisé le montage dynamique des ateliers artistiques mis en avant par la galerie, des vernissages d'expositions, des visites du public et des différents événements événementiels. J'ai géré l'intégralité du processus de création : de la captation sur le terrain avec le matériel de tournage jusqu'au montage vidéo, en passant par le traitement du son et l'intégration de l'identité visuelle de la Slog Galerie sur chaque livrable vidéo.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet mené sur le terrain a mis en valeur mon autonomie, ma polyvalence technique et ma grande adaptabilité face au rythme d'une galerie d'art active. J'ai su lier mes compétences en captation, en montage vidéo et en direction artistique pour concevoir des formats professionnels, variés et cohérents. Ce stage confirme ma capacité à piloter une stratégie de contenu globale sur le terrain, à m'adapter aux besoins d'une structure artistique et à produire des vidéos événementielles et éditoriales d'un niveau professionnel.",
-  "imagesPrincipales": [
-    "VIDÉO/LCL-2.mp4"
-  ],
-  "outils": [
-    "Premiere pro"
-  ],
   "competences": [
     "montage vidéo",
     "scénario",
     "Direction Artistique"
   ],
+  "outils": [
+    "Premiere pro"
+  ],
+  "imagesPrincipales": [
+    "VIDÉO/LCL-2.mp4"
+  ],
   "galerie": [
     ""
   ],
-  "vignette": "IMAGE/design-graphique/slow-logo.png",
-  "ordre": 1
+  "urlProjet": ""
 }

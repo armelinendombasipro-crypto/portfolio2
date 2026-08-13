@@ -6,11 +6,9 @@
   ],
   "type": "UNIVERSITAIRE",
   "annee": "2025",
+  "ordre": 5,
+  "vignette": "/IMAGE/Lady2.png",
   "description": "<b>CONTEXTE ET OBJECTIFS</b><br>Réalisé dans un cadre universitaire, ce projet consistait à faire une recopie de A à Z de l'affiche originale 'My Fair Lady' pour bien maîtriser les outils et la mise en page. Une fois qu'on avait fini de la recopier fidèlement, l'objectif était de la refaire entièrement mais sous forme d'affiche typographique, en utilisant uniquement du texte pour créer l'image.<br><br><b>RÉALISATIONS</b><br>Pour la création, je me suis inspiré de la technique du ASCII art qui permet de faire des formes avec du texte. Je me suis concentré sur le titre 'My Fair Lady' et j'ai fait en sorte que le texte représente directement une robe pour illustrer l'affiche. J'ai dû manipuler les lettres et les polices pour que la silhouette soit reconnaissable tout en gardant le titre lisible, en utilisant principalement Illustrator.<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>Ce projet m'a appris à passer d'un travail de copie très précis à une création originale avec de fortes contraintes. J'ai su faire preuve de créativité pour détourner la typographie et en faire une illustration visuelle. Ça confirme ma capacité à réinterpréter un projet existant et à gérer des concepts graphiques plus poussés comme la typographie expressive.",
-  "imagesPrincipales": [
-    "IMAGE/design-graphique/Lady2.png",
-    "IMAGE/design-graphique/MFL.jpg"
-  ],
   "competences": [
     "Affiche typographique",
     "Print"
@@ -18,7 +16,10 @@
   "outils": [
     "Adobe Illustrator"
   ],
+  "imagesPrincipales": [
+    "/IMAGE/Lady2.png",
+    "/IMAGE/MyFairLady(finit).pdf"
+  ],
   "galerie": [],
-  "vignette": "IMAGE/design-graphique/Lady2.png",
-  "ordre": 5
+  "urlProjet": ""
 }

@@ -96,3 +96,14 @@ collections:
         name: "urlProjet"
         widget: "string"
         required: false
+
+  - name: "page_apropos"
+    label: "Page À propos"
+    files:
+      - name: "reglages"
+        label: "Réglages de la page"
+        file: "content/apropos.json"
+        fields:
+          - label: "Ma photo"
+            name: "photo"
+            widget: "image"

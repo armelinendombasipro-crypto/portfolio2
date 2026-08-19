@@ -2,6 +2,7 @@ backend:
   name: github
   repo: armelinendombasipro-crypto/portfolio2
   branch: main
+  base_url: https://sveltia-cms-auth.armelinendombasipro-199.workers.dev
 
 # Dossier où seront rangées les images que tu ajoutes depuis le back-office
 media_folder: "IMAGE"

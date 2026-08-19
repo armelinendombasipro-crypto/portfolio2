@@ -1,8 +1,8 @@
 backend:
   name: github
-  # ⚠️ À REMPLIR : remplace par "ton-pseudo-github/nom-du-depot" une fois le dépôt créé
   repo: armelinendombasipro-crypto/portfolio2
   branch: main
+  base_url: https://spiffy-profiterole-38c3b7.netlify.app
 
 # Dossier où seront rangées les images que tu ajoutes depuis le back-office
 media_folder: "IMAGE"

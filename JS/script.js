@@ -1,6 +1,9 @@
+const SUPABASE_URL_ACCUEIL = "https://lcizfpythfvoqpwvgudd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY_ACCUEIL = "sb_publishable_drHbLNFAe1CGItoded5GZA_s39AGJc0";
+
 const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
-  const labels = ['Design graphique', 'UI/UX design', 'Audiovisuel'];
+  let labels = ['Design graphique', 'UI/UX design', 'Audiovisuel'];
   const catLabel = document.getElementById('cat-label');
   let i = 0;
   setInterval(() => {
@@ -11,6 +14,45 @@ const slides = document.querySelectorAll('.slide');
     dots[i].classList.add('active');
     catLabel.textContent = labels[i];
   }, 3000);
+
+  // Va chercher les 3 diapositives réglées dans le back-office (Supabase),
+  // et remplace le contenu par défaut si des fichiers ont été ajoutés.
+  (async function chargerHeroAccueil() {
+    try {
+      const res = await fetch(`${SUPABASE_URL_ACCUEIL}/rest/v1/reglages?cle=eq.accueil_hero&select=valeur`, {
+        headers: {
+          "apikey": SUPABASE_PUBLISHABLE_KEY_ACCUEIL,
+          "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY_ACCUEIL}`
+        }
+      });
+      const data = await res.json();
+      const reglageSlides = data[0] && data[0].valeur && data[0].valeur.slides;
+      if (!reglageSlides) return;
+
+      reglageSlides.forEach((s, idx) => {
+        if (!slides[idx]) return;
+        if (s.label) labels[idx] = s.label;
+        if (idx === 0 && s.label) catLabel.textContent = s.label;
+        if (!s.media) return;
+
+        slides[idx].style.backgroundImage = 'none';
+        slides[idx].innerHTML = '';
+        if (/\.(mp4|mov|webm)$/i.test(s.media)) {
+          const video = document.createElement('video');
+          video.src = s.media;
+          video.autoplay = true; video.muted = true; video.loop = true; video.playsInline = true;
+          video.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+          slides[idx].appendChild(video);
+        } else {
+          slides[idx].style.backgroundImage = `url('${s.media}')`;
+          slides[idx].style.backgroundSize = 'cover';
+          slides[idx].style.backgroundPosition = 'center';
+        }
+      });
+    } catch (e) {
+      console.warn("Impossible de charger les diapositives de l'accueil :", e);
+    }
+  })();
 
   const navbar = document.querySelector('.navbar');
   const statusTop = document.getElementById('status-top');
@@ -65,14 +107,8 @@ const slides = document.querySelectorAll('.slide');
   });
 // ==========================================================
 // PROJETS RÉELS SUR L'ACCUEIL (même source que la page Projets)
-// Remplit le grand projet + les 6 mini-cartes avec tes vraies
-// données depuis content/projets/. Si l'API GitHub échoue, on
-// se rabat sur le manifest.json local.
+// Les projets sont stockés dans Supabase (table "projets").
 // ==========================================================
-const GITHUB_USER_ACCUEIL = "armelinendombasipro-crypto";
-const GITHUB_REPO_ACCUEIL = "portfolio2";
-const PROJETS_PATH_ACCUEIL = "content/projets";
-
 const LABELS_CATEGORIE = {
   graphisme: "Design graphique",
   "ui-ux": "UI/UX design",
@@ -83,21 +119,17 @@ const LABELS_CATEGORIE = {
 async function chargerProjetsAccueil() {
   let projets = [];
   try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER_ACCUEIL}/${GITHUB_REPO_ACCUEIL}/contents/${PROJETS_PATH_ACCUEIL}`);
-    if (!res.ok) throw new Error('API GitHub indisponible');
-    const liste = await res.json();
-    const urls = liste
-      .filter(f => f.name.endsWith('.json') && f.name !== 'manifest.json')
-      .map(f => f.download_url);
-    projets = await Promise.all(urls.map(u => fetch(u).then(r => r.json())));
+    const res = await fetch(`${SUPABASE_URL_ACCUEIL}/rest/v1/projets?select=*&order=ordre.asc`, {
+      headers: {
+        "apikey": SUPABASE_PUBLISHABLE_KEY_ACCUEIL,
+        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY_ACCUEIL}`
+      }
+    });
+    if (!res.ok) throw new Error('Supabase indisponible');
+    projets = await res.json();
   } catch (e) {
-    try {
-      const manifest = await fetch(`${PROJETS_PATH_ACCUEIL}/manifest.json`).then(r => r.json());
-      projets = await Promise.all(manifest.map(f => fetch(`${PROJETS_PATH_ACCUEIL}/${f}`).then(r => r.json())));
-    } catch (e2) {
-      console.error("Impossible de charger les projets sur l'accueil :", e2);
-      return;
-    }
+    console.error("Impossible de charger les projets sur l'accueil :", e);
+    return;
   }
 
   projets.sort((a, b) => (a.ordre || 999) - (b.ordre || 999));

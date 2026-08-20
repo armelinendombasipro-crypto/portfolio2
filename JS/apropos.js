@@ -1,13 +1,23 @@
-// Va chercher la photo réglée dans le back-office (content/apropos.json)
+// Va chercher la photo réglée dans le back-office (table "reglages" de Supabase)
 // et remplace le fond violet par la vraie image.
+const SUPABASE_URL_APROPOS = "https://lcizfpythfvoqpwvgudd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY_APROPOS = "sb_publishable_drHbLNFAe1CGItoded5GZA_s39AGJc0";
+
 async function chargerPhotoApropos() {
   try {
-    const data = await fetch('content/apropos.json').then(r => r.json());
-    if (data.photo) {
+    const res = await fetch(`${SUPABASE_URL_APROPOS}/rest/v1/reglages?cle=eq.apropos&select=valeur`, {
+      headers: {
+        "apikey": SUPABASE_PUBLISHABLE_KEY_APROPOS,
+        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY_APROPOS}`
+      }
+    });
+    const data = await res.json();
+    const photo = data[0] && data[0].valeur && data[0].valeur.photo;
+    if (photo) {
       const photoSide = document.querySelector('.about-photo-side');
       const img = photoSide ? photoSide.querySelector('img') : null;
       if (img) {
-        img.src = data.photo;
+        img.src = photo;
         photoSide.style.background = 'none'; // on retire le placeholder violet
       }
     }

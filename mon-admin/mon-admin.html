@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Mon admin — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --argent-fond:#DBDBDB;
+    --violet:#6F5774;
+    --ink:#2B2A2E;
+    --argent-fonce:#7C7E84;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--argent-fond); font-family:'Space Grotesk', sans-serif; color:var(--ink); padding:40px 20px 100px;}
+  h1{font-family:'DM Serif Display', serif; font-weight:400; font-size:32px; margin-bottom:6px;}
+  .sous-titre{color:var(--argent-fonce); margin-bottom:30px; font-size:14px;}
+
+  #ecran-login{max-width:360px; margin:100px auto; text-align:center;}
+  #ecran-login input{width:100%; padding:14px; font-size:15px; border:1.5px solid var(--argent-fonce); margin-bottom:14px; font-family:'Space Grotesk', sans-serif;}
+
+  button{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; padding:13px 28px; border:none; cursor:pointer;}
+  .btn-violet{background:var(--violet); color:#fff;}
+  .btn-violet:hover{background:#5a4760;}
+  .btn-gris{background:#fff; color:var(--ink); border:1.5px solid var(--argent-fonce);}
+  .btn-gris:hover{background:#f0f0f0;}
+  .btn-rouge{background:#a33; color:#fff;}
+  .btn-rouge:hover{background:#822;}
+  button:disabled{opacity:.5; cursor:not-allowed;}
+
+  #app{display:none; max-width:900px; margin:0 auto;}
+
+  .onglets{display:flex; gap:10px; margin-bottom:30px; border-bottom:1.5px solid var(--argent-fonce); flex-wrap:wrap;}
+  .onglets button{background:none; padding:12px 4px; border-bottom:3px solid transparent; font-weight:600; color:var(--argent-fonce);}
+  .onglets button.actif{color:var(--ink); border-color:var(--violet);}
+  .page{display:none;}
+  .page.actif{display:block;}
+
+  .barre-haut{display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap:wrap; gap:12px;}
+  .liste-projets{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px;}
+  .liste-projets button{background:#fff; border:1.5px solid var(--argent-fonce); font-weight:600;}
+  .liste-projets button.actif{background:var(--violet); color:#fff; border-color:var(--violet);}
+
+  .champ{margin-bottom:24px;}
+  .champ label{display:block; font-weight:600; margin-bottom:8px; font-size:14px;}
+  .champ .aide{font-weight:400; color:var(--argent-fonce); font-size:12.5px; margin-top:4px;}
+  .champ input[type=text], .champ input[type=number], .champ textarea{
+    width:100%; padding:12px; border:1.5px solid var(--argent-fonce);
+    font-family:'Space Grotesk', sans-serif; font-size:14px; background:#fff;
+  }
+  .champ textarea{resize:vertical; min-height:70px;}
+  .champ-cases{display:flex; flex-wrap:wrap; gap:14px;}
+  .champ-cases label{display:flex; align-items:center; gap:6px; font-weight:400; cursor:pointer;}
+
+  .bloc{background:#fff; border:1px solid var(--argent-fonce); padding:24px; margin-bottom:24px;}
+  .bloc h3{font-family:'DM Serif Display', serif; font-weight:400; font-size:19px; margin:0 0 18px;}
+
+  .zone-upload{border:1.5px dashed var(--argent-fonce); padding:16px; text-align:center; background:#f7f7f7; cursor:pointer; font-size:13px; margin-bottom:10px;}
+  .zone-upload:hover{background:#efefef;}
+
+  .actions-bas{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap;}
+  #message{position:fixed; top:20px; left:50%; transform:translateX(-50%); padding:14px 26px; font-weight:600; font-size:14px; z-index:999; display:none;}
+  #message.succes{background:var(--violet); color:#fff;}
+  #message.erreur{background:#a33; color:#fff;}
+</style>
+</head>
+<body>
+
+  <div id="ecran-login">
+    <h1>Mon admin</h1>
+    <p class="sous-titre">Entre ton mot de passe pour continuer.</p>
+    <input type="password" id="input-mdp" placeholder="Mot de passe">
+    <button class="btn-violet" style="width:100%" onclick="seConnecter()">Se connecter</button>
+    <p id="erreur-login" style="color:#a33; font-size:13px; margin-top:10px;"></p>
+  </div>
+
+  <div id="app">
+    <h1>Mon admin</h1>
+    <p class="sous-titre">Gère tes projets, ta photo et ton accueil sans toucher au code.</p>
+
+    <div class="onglets">
+      <button class="actif" onclick="changerOnglet('projets')">Projets</button>
+      <button onclick="changerOnglet('apropos')">Page À propos</button>
+      <button onclick="changerOnglet('accueil')">Page d'accueil</button>
+    </div>
+
+    <!-- ===== ONGLET PROJETS ===== -->
+    <div class="page actif" id="page-projets">
+      <div class="barre-haut">
+        <p class="sous-titre" style="margin:0;">Clique sur un projet pour le modifier, ou crée-en un nouveau.</p>
+        <button class="btn-violet" onclick="nouveauProjet()">+ Nouveau projet</button>
+      </div>
+
+      <div class="liste-projets" id="liste-projets"></div>
+
+      <form id="formulaire" style="display:none" onsubmit="return false;">
+        <div class="bloc">
+          <h3>Informations générales</h3>
+          <div class="champ">
+            <label>Identifiant unique (slug)</label>
+            <input type="text" id="f-slug">
+            <p class="aide">Sans espace ni accent, ex : mon-nouveau-projet. Une fois créé, ne le change plus.</p>
+          </div>
+          <div class="champ">
+            <label>Titre du projet</label>
+            <input type="text" id="f-titre">
+          </div>
+          <div class="champ">
+            <label>Catégorie(s)</label>
+            <div class="champ-cases">
+              <label><input type="checkbox" value="graphisme" class="f-categorie"> Design graphique</label>
+              <label><input type="checkbox" value="ui-ux" class="f-categorie"> UI/UX design</label>
+              <label><input type="checkbox" value="photographie" class="f-categorie"> Photographie</label>
+              <label><input type="checkbox" value="audiovisuel" class="f-categorie"> Audiovisuel</label>
+            </div>
+          </div>
+          <div class="champ">
+            <label>Type</label>
+            <div class="champ-cases">
+              <label><input type="radio" name="f-type" value="UNIVERSITAIRE" class="f-type"> Universitaire</label>
+              <label><input type="radio" name="f-type" value="PROFESSIONNEL" class="f-type"> Professionnel</label>
+            </div>
+          </div>
+          <div class="champ">
+            <label>Année</label>
+            <input type="text" id="f-annee" style="max-width:150px;">
+          </div>
+          <div class="champ">
+            <label>Ordre d'affichage</label>
+            <input type="number" id="f-ordre" style="max-width:150px;" value="1">
+            <p class="aide">1 = affiché en premier sur la page Projets.</p>
+          </div>
+        </div>
+
+        <div class="bloc">
+          <h3>Vignette (image de la carte projet)</h3>
+          <div class="zone-upload" onclick="document.getElementById('input-vignette').click()">Clique pour choisir une image</div>
+          <input type="file" id="input-vignette" accept="image/*" style="display:none" onchange="uploaderVignette(this)">
+          <input type="text" id="f-vignette" placeholder="ou colle un chemin/lien ici">
+          <div id="apercu-vignette"></div>
+        </div>
+
+        <div class="bloc">
+          <h3>Description</h3>
+          <div class="champ"><label>Contexte et objectifs</label><textarea id="f-desc-contexte"></textarea></div>
+          <div class="champ"><label>Réalisations</label><textarea id="f-desc-realisations"></textarea></div>
+          <div class="champ"><label>Bilan et savoir-être</label><textarea id="f-desc-bilan"></textarea></div>
+        </div>
+
+        <div class="bloc">
+          <h3>Compétences acquises</h3>
+          <textarea id="f-competences" placeholder="Une compétence par ligne"></textarea>
+        </div>
+
+        <div class="bloc">
+          <h3>Outils utilisés</h3>
+          <textarea id="f-outils" placeholder="Un outil par ligne"></textarea>
+        </div>
+
+        <div class="bloc">
+          <h3>Images / vidéos principales (colonne de gauche)</h3>
+          <div class="zone-upload" onclick="document.getElementById('input-principales').click()">Clique pour ajouter une ou plusieurs photos/vidéos</div>
+          <input type="file" id="input-principales" accept="image/*,video/*" multiple style="display:none" onchange="uploaderVersListe(this, 'f-images-principales')">
+          <textarea id="f-images-principales" placeholder="Un fichier ou lien par ligne (les liens YouTube fonctionnent aussi)"></textarea>
+        </div>
+
+        <div class="bloc">
+          <h3>Galerie (photos/vidéos en bas de page)</h3>
+          <div class="zone-upload" onclick="document.getElementById('input-galerie').click()">Clique pour ajouter une ou plusieurs photos/vidéos</div>
+          <input type="file" id="input-galerie" accept="image/*,video/*" multiple style="display:none" onchange="uploaderVersListe(this, 'f-galerie')">
+          <textarea id="f-galerie" placeholder="Un fichier ou lien par ligne (les liens YouTube fonctionnent aussi)"></textarea>
+        </div>
+
+        <div class="bloc">
+          <h3>Lien externe (Figma, InDesign, site en ligne...)</h3>
+          <input type="text" id="f-url-projet">
+        </div>
+
+        <div class="actions-bas">
+          <button type="button" class="btn-violet" onclick="sauvegarder()" id="btn-sauvegarder">Enregistrer</button>
+          <button type="button" class="btn-gris" onclick="annulerEdition()">Annuler</button>
+          <button type="button" class="btn-rouge" onclick="supprimerProjetActuel()" id="btn-supprimer" style="margin-left:auto;">Supprimer ce projet</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ===== ONGLET À PROPOS ===== -->
+    <div class="page" id="page-apropos">
+      <div class="bloc">
+        <h3>Ma photo</h3>
+        <div class="zone-upload" onclick="document.getElementById('input-photo-apropos').click()">Clique pour choisir une photo</div>
+        <input type="file" id="input-photo-apropos" accept="image/*" style="display:none" onchange="uploaderPhotoApropos(this)">
+        <div id="apercu-photo-apropos"></div>
+      </div>
+      <div class="actions-bas">
+        <button type="button" class="btn-violet" onclick="sauvegarderApropos()">Enregistrer</button>
+      </div>
+    </div>
+
+    <!-- ===== ONGLET ACCUEIL ===== -->
+    <div class="page" id="page-accueil">
+      <p class="sous-titre">Les 3 diapositives qui défilent en haut de la page d'accueil.</p>
+      <div id="diapositives-accueil"></div>
+      <div class="actions-bas">
+        <button type="button" class="btn-violet" onclick="sauvegarderAccueil()">Enregistrer</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="message"></div>
+
+<script>
+  let motDePasse = sessionStorage.getItem('mdp-admin') || '';
+  let projets = [];
+  let slugEnCours = null;
+
+  // ----- Onglets -----
+  function changerOnglet(nom) {
+    document.querySelectorAll('.onglets button').forEach(b => b.classList.remove('actif'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('actif'));
+    document.querySelector(`.onglets button[onclick="changerOnglet('${nom}')"]`).classList.add('actif');
+    document.getElementById('page-' + nom).classList.add('actif');
+    if (nom === 'apropos') chargerApropos();
+    if (nom === 'accueil') chargerAccueil();
+  }
+
+  // ----- Connexion -----
+  async function seConnecter() {
+    const val = document.getElementById('input-mdp').value;
+    const res = await fetch('/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ motDePasse: val })
+    });
+    if (res.ok) {
+      motDePasse = val;
+      sessionStorage.setItem('mdp-admin', val);
+      document.getElementById('ecran-login').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      chargerProjets();
+    } else {
+      document.getElementById('erreur-login').textContent = 'Mot de passe incorrect.';
+    }
+  }
+
+  (async function verifierSessionExistante() {
+    if (!motDePasse) return;
+    const res = await fetch('/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ motDePasse })
+    });
+    if (res.ok) {
+      document.getElementById('ecran-login').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      chargerProjets();
+    }
+  })();
+
+  // ----- Projets -----
+  async function chargerProjets() {
+    const res = await fetch('/api/lister-projets', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ motDePasse })
+    });
+    const data = await res.json();
+    if (!res.ok) return afficherMessage(data.error || 'Erreur de chargement', 'erreur');
+    projets = data.projets;
+    afficherListeProjets();
+  }
+
+  function afficherListeProjets() {
+    const conteneur = document.getElementById('liste-projets');
+    conteneur.innerHTML = '';
+    projets.forEach(p => {
+      const btn = document.createElement('button');
+      btn.textContent = p.titre || p.slug;
+      btn.className = p.slug === slugEnCours ? 'actif' : '';
+      btn.onclick = () => ouvrirProjet(p.slug);
+      conteneur.appendChild(btn);
+    });
+  }
+
+  function nouveauProjet() {
+    slugEnCours = null;
+    remplirFormulaire({
+      slug: '', titre: '', categorie: [], type: 'UNIVERSITAIRE', annee: '',
+      ordre: (projets.length ? Math.max(...projets.map(p => p.ordre || 1)) + 1 : 1),
+      vignette: '', description: '', competences: [], outils: [],
+      images_principales: [], galerie: [], url_projet: ''
+    });
+    document.getElementById('formulaire').style.display = 'block';
+    document.getElementById('btn-supprimer').style.display = 'none';
+    document.getElementById('f-slug').disabled = false;
+    afficherListeProjets();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function ouvrirProjet(slug) {
+    const p = projets.find(pr => pr.slug === slug);
+    if (!p) return;
+    slugEnCours = slug;
+    remplirFormulaire(p);
+    document.getElementById('formulaire').style.display = 'block';
+    document.getElementById('btn-supprimer').style.display = 'inline-block';
+    document.getElementById('f-slug').disabled = true;
+    afficherListeProjets();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function annulerEdition() {
+    document.getElementById('formulaire').style.display = 'none';
+    slugEnCours = null;
+    afficherListeProjets();
+  }
+
+  function decouperDescription(html) {
+    if (!html) return { contexte: '', realisations: '', bilan: '' };
+    const parts = (html || '').split(/<b>(.*?)<\/b>\s*<br\s*\/?>/i).filter(p => p !== '');
+    const sections = {};
+    for (let i = 0; i < parts.length; i += 2) {
+      if (parts[i + 1] !== undefined) {
+        const titre = parts[i].trim().toUpperCase();
+        let corps = parts[i + 1].replace(/^(<br\s*\/?>)+/i, '').replace(/(<br\s*\/?>)+$/i, '');
+        if (titre.includes('CONTEXTE')) sections.contexte = corps;
+        else if (titre.includes('RÉALISATION') || titre.includes('REALISATION')) sections.realisations = corps;
+        else if (titre.includes('BILAN')) sections.bilan = corps;
+      }
+    }
+    return { contexte: sections.contexte || '', realisations: sections.realisations || '', bilan: sections.bilan || '' };
+  }
+
+  function remplirFormulaire(p) {
+    document.getElementById('f-slug').value = p.slug || '';
+    document.getElementById('f-titre').value = p.titre || '';
+    document.getElementById('f-annee').value = p.annee || '';
+    document.getElementById('f-ordre').value = p.ordre || 1;
+    document.getElementById('f-vignette').value = p.vignette || '';
+    document.getElementById('apercu-vignette').innerHTML = p.vignette ? `<img src="${p.vignette}" style="max-width:200px; margin-top:10px; display:block;">` : '';
+    document.getElementById('f-url-projet').value = p.url_projet || '';
+
+    const cats = Array.isArray(p.categorie) ? p.categorie : (p.categorie ? [p.categorie] : []);
+    document.querySelectorAll('.f-categorie').forEach(cb => cb.checked = cats.includes(cb.value));
+    document.querySelectorAll('.f-type').forEach(r => r.checked = (r.value === (p.type || 'UNIVERSITAIRE')));
+
+    const desc = decouperDescription(p.description);
+    document.getElementById('f-desc-contexte').value = desc.contexte;
+    document.getElementById('f-desc-realisations').value = desc.realisations;
+    document.getElementById('f-desc-bilan').value = desc.bilan;
+
+    document.getElementById('f-competences').value = (p.competences || []).join('\n');
+    document.getElementById('f-outils').value = (p.outils || []).join('\n');
+    document.getElementById('f-images-principales').value = (p.images_principales || []).join('\n');
+    document.getElementById('f-galerie').value = (p.galerie || []).join('\n');
+  }
+
+  function fichierEnBase64(fichier) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(fichier);
+    });
+  }
+
+  async function envoyerFichier(fichier) {
+    const base64 = await fichierEnBase64(fichier);
+    const res = await fetch('/api/upload-fichier', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ motDePasse, nomFichier: fichier.name, contenuBase64: base64, typeContenu: fichier.type })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Échec de l'upload");
+    return data.url;
+  }
+
+  async function uploaderVignette(input) {
+    if (!input.files.length) return;
+    afficherMessage("Envoi de l'image en cours...", 'succes');
+    try {
+      const url = await envoyerFichier(input.files[0]);
+      document.getElementById('f-vignette').value = url;
+      document.getElementById('apercu-vignette').innerHTML = `<img src="${url}" style="max-width:200px; margin-top:10px; display:block;">`;
+      afficherMessage('Image ajoutée !', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+    input.value = '';
+  }
+
+  async function uploaderVersListe(input, idTextarea) {
+    if (!input.files.length) return;
+    afficherMessage(`Envoi de ${input.files.length} fichier(s) en cours...`, 'succes');
+    const textarea = document.getElementById(idTextarea);
+    try {
+      for (const fichier of input.files) {
+        const url = await envoyerFichier(fichier);
+        textarea.value = (textarea.value.trim() ? textarea.value.trim() + '\n' : '') + url;
+      }
+      afficherMessage('Fichier(s) ajouté(s) !', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+    input.value = '';
+  }
+
+  function composerDescription() {
+    const c = document.getElementById('f-desc-contexte').value.trim();
+    const r = document.getElementById('f-desc-realisations').value.trim();
+    const b = document.getElementById('f-desc-bilan').value.trim();
+    return `<b>CONTEXTE ET OBJECTIFS</b><br>${c}<br><br><b>RÉALISATIONS</b><br>${r}<br><br><b>BILAN ET SAVOIR-ÊTRE</b><br>${b}`;
+  }
+
+  function listeDepuisTextarea(id) {
+    return document.getElementById(id).value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  }
+
+  async function sauvegarder() {
+    const slug = document.getElementById('f-slug').value.trim();
+    if (!slug) return afficherMessage("L'identifiant (slug) est obligatoire.", 'erreur');
+
+    const categories = Array.from(document.querySelectorAll('.f-categorie:checked')).map(cb => cb.value);
+    const type = (document.querySelector('.f-type:checked') || {}).value || 'UNIVERSITAIRE';
+
+    const projet = {
+      slug,
+      titre: document.getElementById('f-titre').value.trim(),
+      categorie: categories,
+      type,
+      annee: document.getElementById('f-annee').value.trim(),
+      ordre: parseInt(document.getElementById('f-ordre').value, 10) || 1,
+      vignette: document.getElementById('f-vignette').value.trim(),
+      description: composerDescription(),
+      competences: listeDepuisTextarea('f-competences'),
+      outils: listeDepuisTextarea('f-outils'),
+      images_principales: listeDepuisTextarea('f-images-principales'),
+      galerie: listeDepuisTextarea('f-galerie'),
+      url_projet: document.getElementById('f-url-projet').value.trim()
+    };
+
+    document.getElementById('btn-sauvegarder').disabled = true;
+    afficherMessage('Enregistrement en cours...', 'succes');
+    try {
+      const res = await fetch('/api/sauvegarder-projet', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ motDePasse, projet })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Erreur d'enregistrement");
+      afficherMessage('Projet enregistré !', 'succes');
+      slugEnCours = slug;
+      await chargerProjets();
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+    document.getElementById('btn-sauvegarder').disabled = false;
+  }
+
+  async function supprimerProjetActuel() {
+    if (!slugEnCours) return;
+    if (!confirm(`Supprimer définitivement le projet "${slugEnCours}" ?`)) return;
+    try {
+      const res = await fetch('/api/supprimer-projet', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ motDePasse, slug: slugEnCours })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erreur de suppression');
+      afficherMessage('Projet supprimé.', 'succes');
+      document.getElementById('formulaire').style.display = 'none';
+      slugEnCours = null;
+      await chargerProjets();
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+  }
+
+  // ----- À propos -----
+  async function chargerApropos() {
+    const res = await fetch(`/api/reglages?cle=apropos&motDePasse=${encodeURIComponent(motDePasse)}`);
+    const data = await res.json();
+    if (!res.ok) return afficherMessage(data.error, 'erreur');
+    const photo = (data.reglage && data.reglage.valeur && data.reglage.valeur.photo) || '';
+    document.getElementById('apercu-photo-apropos').innerHTML = photo ? `<img src="${photo}" style="max-width:250px; margin-top:10px; display:block;">` : '<p class="sous-titre">Aucune photo pour le moment.</p>';
+    document.getElementById('apercu-photo-apropos').dataset.url = photo;
+  }
+
+  async function uploaderPhotoApropos(input) {
+    if (!input.files.length) return;
+    afficherMessage('Envoi en cours...', 'succes');
+    try {
+      const url = await envoyerFichier(input.files[0]);
+      document.getElementById('apercu-photo-apropos').innerHTML = `<img src="${url}" style="max-width:250px; margin-top:10px; display:block;">`;
+      document.getElementById('apercu-photo-apropos').dataset.url = url;
+      afficherMessage('Photo prête, clique sur Enregistrer pour valider.', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+  }
+
+  async function sauvegarderApropos() {
+    const url = document.getElementById('apercu-photo-apropos').dataset.url || '';
+    try {
+      const res = await fetch('/api/reglages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ motDePasse, cle: 'apropos', valeur: { photo: url } })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      afficherMessage('Photo enregistrée !', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+  }
+
+  // ----- Accueil (diapositives) -----
+  let slidesAccueil = [];
+
+  async function chargerAccueil() {
+    const res = await fetch(`/api/reglages?cle=accueil_hero&motDePasse=${encodeURIComponent(motDePasse)}`);
+    const data = await res.json();
+    if (!res.ok) return afficherMessage(data.error, 'erreur');
+    slidesAccueil = (data.reglage && data.reglage.valeur && data.reglage.valeur.slides) || [{},{},{}];
+    afficherDiapositives();
+  }
+
+  function afficherDiapositives() {
+    const conteneur = document.getElementById('diapositives-accueil');
+    conteneur.innerHTML = '';
+    slidesAccueil.forEach((slide, i) => {
+      const bloc = document.createElement('div');
+      bloc.className = 'bloc';
+      bloc.innerHTML = `
+        <h3>Diapositive ${i + 1}</h3>
+        <div class="champ">
+          <label>Libellé (ex : DESIGN GRAPHIQUE)</label>
+          <input type="text" value="${slide.label || ''}" onchange="slidesAccueil[${i}].label = this.value">
+        </div>
+        <div class="champ">
+          <label>Image ou vidéo</label>
+          <div class="zone-upload" onclick="document.getElementById('input-slide-${i}').click()">Clique pour choisir un fichier</div>
+          <input type="file" id="input-slide-${i}" accept="image/*,video/*" style="display:none" onchange="uploaderSlide(this, ${i})">
+          <input type="text" value="${slide.media || ''}" placeholder="ou colle un lien" onchange="slidesAccueil[${i}].media = this.value">
+          <div>${slide.media ? (slide.media.match(/\.(mp4|mov|webm)$/i) ? `<video src="${slide.media}" style="max-width:200px; margin-top:8px;" controls></video>` : `<img src="${slide.media}" style="max-width:200px; margin-top:8px;">`) : ''}</div>
+        </div>
+      `;
+      conteneur.appendChild(bloc);
+    });
+  }
+
+  async function uploaderSlide(input, index) {
+    if (!input.files.length) return;
+    afficherMessage('Envoi en cours...', 'succes');
+    try {
+      const url = await envoyerFichier(input.files[0]);
+      slidesAccueil[index].media = url;
+      afficherDiapositives();
+      afficherMessage('Fichier prêt, clique sur Enregistrer pour valider.', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+  }
+
+  async function sauvegarderAccueil() {
+    try {
+      const res = await fetch('/api/reglages', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ motDePasse, cle: 'accueil_hero', valeur: { slides: slidesAccueil } })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      afficherMessage('Diapositives enregistrées !', 'succes');
+    } catch (e) { afficherMessage(e.message, 'erreur'); }
+  }
+
+  // ----- Message flottant -----
+  let timeoutMessage;
+  function afficherMessage(texte, type) {
+    const el = document.getElementById('message');
+    el.textContent = texte;
+    el.className = type;
+    el.style.display = 'block';
+    clearTimeout(timeoutMessage);
+    timeoutMessage = setTimeout(() => { el.style.display = 'none'; }, 4000);
+  }
+</script>
+
+</body>
+</html>

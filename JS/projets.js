@@ -2,42 +2,33 @@
 
 // ==========================================================
 // CHARGEMENT DYNAMIQUE DES PROJETS
-// Chaque projet est un fichier JSON dans content/projets/.
-// Sveltia CMS crée/modifie/supprime ces fichiers -> ils apparaissent
-// ici automatiquement au chargement de la page, sans toucher au code.
+// Les projets sont stockés dans Supabase (table "projets").
+// Le formulaire d'administration (mon-admin.html) écrit dedans,
+// et cette page va les chercher automatiquement à chaque visite.
 // ==========================================================
 
-// ⚠️ À REMPLIR une fois le dépôt GitHub créé (voir instructions fournies)
-const GITHUB_USER = "armelinendombasipro-crypto";
-const GITHUB_REPO = "portfolio2";
-const PROJETS_PATH = "content/projets";
+const SUPABASE_URL = "https://lcizfpythfvoqpwvgudd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_drHbLNFAe1CGItoded5GZA_s39AGJc0";
 
 let dataProjets = {};
 
-async function chargerListeFichiers() {
-  // 1. Essaie l'API GitHub (fonctionne pour un dépôt public, liste le dossier
-  //    automatiquement -> aucune maintenance manuelle nécessaire).
-  try {
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${PROJETS_PATH}`);
-    if (!res.ok) throw new Error('API GitHub indisponible');
-    const liste = await res.json();
-    return liste
-      .filter(f => f.name.endsWith('.json') && f.name !== 'manifest.json')
-      .map(f => f.download_url);
-  } catch (e) {
-    // 2. Solution de secours : le manifest.json local (utile si l'API GitHub
-    //    est hors service, ou en attendant que le dépôt soit configuré).
-    console.warn("Chargement via l'API GitHub impossible, utilisation du manifest local.", e);
-    const manifest = await fetch(`${PROJETS_PATH}/manifest.json`).then(r => r.json());
-    return manifest.map(f => `${PROJETS_PATH}/${f}`);
-  }
-}
-
 async function chargerProjets() {
   try {
-    const urls = await chargerListeFichiers();
-    const projets = await Promise.all(urls.map(u => fetch(u).then(r => r.json())));
-    projets.forEach(p => { dataProjets[p.slug] = p; });
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projets?select=*&order=ordre.asc`, {
+      headers: {
+        "apikey": SUPABASE_PUBLISHABLE_KEY,
+        "Authorization": `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+      }
+    });
+    if (!res.ok) throw new Error('Supabase indisponible');
+    const projets = await res.json();
+    projets.forEach(p => {
+      // On garde aussi les noms utilisés ailleurs dans ce fichier (camelCase),
+      // en plus des noms tels qu'enregistrés dans Supabase (snake_case).
+      p.imagesPrincipales = p.images_principales || [];
+      p.urlProjet = p.url_projet || '';
+      dataProjets[p.slug] = p;
+    });
   } catch (e) {
     console.error("Impossible de charger les projets :", e);
   }
@@ -102,6 +93,11 @@ function genererGrille() {
 
   function estVideo(url) {
     return /\.(mp4|mov|webm|ogg)$/i.test(url.trim());
+  }
+
+  function idYoutube(url) {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : null;
   }
 
   // Les images/vidéos ajoutées à la main dans le code sont de simples chaînes ("chemin.jpg"),
@@ -186,7 +182,14 @@ function genererGrille() {
               projet.imagesPrincipales.forEach(entree => {
                   const url = extraireURL(entree);
                   if (!url) return;
-                  if (estVideo(url)) {
+                  const ytId = idYoutube(url);
+                  if (ytId) {
+                      // Vidéo YouTube intégrée
+                      const wrapper = document.createElement('div');
+                      wrapper.style.cssText = "position:relative; width:100%; padding-top:56.25%; margin-bottom:40px;";
+                      wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>`;
+                      containerImages.appendChild(wrapper);
+                  } else if (estVideo(url)) {
                       // Création d'un lecteur vidéo
                       const video = document.createElement('video');
                       video.src = url;
@@ -274,7 +277,14 @@ function genererGrille() {
           projet.galerie.forEach(entree => {
               const url = extraireURL(entree);
               if (!url) return;
-              if (estVideo(url)) {
+              const ytId = idYoutube(url);
+              if (ytId) {
+                  const wrapper = document.createElement('div');
+                  wrapper.className = "galerie-img";
+                  wrapper.style.cssText += "position:relative; padding-top:56.25%; grid-column:span 2;";
+                  wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>`;
+                  galerieDiv.appendChild(wrapper);
+              } else if (estVideo(url)) {
                   // Création d'un lecteur vidéo (comme dans la colonne principale)
                   const video = document.createElement('video');
                   video.src = url;

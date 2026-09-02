@@ -469,7 +469,7 @@
   .cta-text{
     /* Le texte "Mon profil a retenu votre attention ?" juste avant le footer */
     text-align:center;
-    font-size:15px;
+    font-size:19px;
     color:var(--ink);
     margin-top:24px;
   }

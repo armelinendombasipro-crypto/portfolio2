@@ -420,15 +420,27 @@
   }
   .marquee-row{
     display:flex;
+    align-items:center;
     white-space:nowrap;
     width:max-content;
-    padding:14px 0;
+    padding:18px 0;
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
-    font-size:15px;
+    font-size:19px;
     letter-spacing:.04em;
     text-transform:uppercase;
     animation:marquee-scroll 26s linear infinite;
+  }
+  .marquee-row span{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .tool-icon{
+    width:20px;
+    height:20px;
+    object-fit:contain;
+    flex-shrink:0;
   }
   .marquee-row.reverse{
     /* La 2e rangée défile dans l'autre sens, un peu plus lentement */
@@ -437,7 +449,7 @@
   }
   .marquee-strip.marquee-violet{background:var(--metal-petrol); color:var(--argent-clair);}
   .marquee-strip.marquee-gris{background:linear-gradient(150deg, #F0F0F1 0%, #C7C9CE 35%, #8A8C92 70%, #E3E4E6 100%); color:#2B2A2E;}
-  .marquee-row span{padding:0 clamp(10px, 2vw, 22px); font-size:clamp(12px, 1.6vw, 15px);}
+  .marquee-row span{padding:0 clamp(12px, 2vw, 24px);}
   .marquee-row .dot{
     display:inline-block;
     width:4px; height:4px;

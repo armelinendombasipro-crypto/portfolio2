@@ -123,6 +123,10 @@
   .cta-pill{
     /* Le bouton "Voir plus de projets" utilise ce même style de bandeau */
     cursor:pointer; position:relative; overflow:hidden; z-index:1;
+    font-size:17px ;
+    padding:17px 34px ;
+    font-weight:600;
+  }
   }
   .cta-pill::before{
     content:"";

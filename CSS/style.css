@@ -1,12 +1,17 @@
+/* ==========================================================
+   VARIABLES DE COULEURS — change ici pour changer partout sur le site
+   ========================================================== */
 :root{
-    --argent-fond: #DBDBDB;
-    --argent-clair: #F1F1F2;
-    --argent-mid: #B9BBC1;
-    --argent-fonce: #7C7E84;
-    --violet-cta: #2F4858;
-    --metal-petrol: linear-gradient(150deg, #9C8FA6 0%, #6F5774 35%, #392E42 70%, #8A7A94 100%);
-    --ink: #2B2A2E;
+    --argent-fond: #DBDBDB;      /* fond gris clair général du site */
+    --argent-clair: #F1F1F2;     /* gris très clair (logo, texte sur fond violet) */
+    --argent-mid: #B9BBC1;       /* gris moyen */
+    --argent-fonce: #7C7E84;     /* gris foncé (bordures) */
+    --violet-cta: #2F4858;       /* petit accent violet foncé (points actifs du carrousel) */
+    --metal-petrol: linear-gradient(150deg, #9C8FA6 0%, #6F5774 35%, #392E42 70%, #8A7A94 100%); /* le violet métallique principal du site */
+    --ink: #2B2A2E;              /* couleur du texte noir/gris foncé */
   }
+
+  /* Réinitialisation de base + police générale du site */
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
@@ -15,7 +20,9 @@
     color:var(--ink);
   }
 
-  /* --- NAVBAR (même sur toutes les pages) --- */
+  /* ==========================================================
+     NAVBAR — barre de navigation en haut (même sur toutes les pages)
+     ========================================================== */
   .navbar{
     display:flex;
     align-items:center;
@@ -28,6 +35,7 @@
     transition:background .3s ease, padding .3s ease;
   }
   .navbar.scrolled{
+    /* Style de la navbar une fois qu'on a scrollé un peu (fond gris + plus fine) */
     background:linear-gradient(150deg, #E7E7E9 0%, #B9BBC1 40%, #7C7E84 75%, #D8D9DC 100%);
     padding:10px 32px;
   }
@@ -42,6 +50,7 @@
   }
   .nav-links{display:flex; gap:12px;}
   .btn-nav{
+    /* Boutons de la navbar (CV, Projets, À propos, Contact) */
     position:relative;
     overflow:hidden;
     z-index:1;
@@ -56,6 +65,7 @@
     transition:padding .3s ease, color .5s ease, border-color .5s ease;
   }
   .btn-nav::before{
+    /* Le fond violet qui apparaît au survol du bouton */
     content:"";
     position:absolute; inset:0;
     background:var(--metal-petrol);
@@ -74,7 +84,10 @@
     opacity:1;
   }
 
-  /* --- BANDEAU "EN RECHERCHE" (au-dessus du curtain, animation d'ouverture) --- */
+  /* ==========================================================
+     BANDEAU "EN RECHERCHE ALTERNANCE..." — juste sous la navbar,
+     avec une animation d'ouverture au chargement de la page
+     ========================================================== */
   .status-wrap{
     display:flex; justify-content:center;
     padding:0 24px 20px;
@@ -107,7 +120,10 @@
   #status-top .status-pill{
     animation:ouverture .9s ease-out both;
   }
-  .cta-pill{cursor:pointer; position:relative; overflow:hidden; z-index:1;}
+  .cta-pill{
+    /* Le bouton "Voir plus de projets" utilise ce même style de bandeau */
+    cursor:pointer; position:relative; overflow:hidden; z-index:1;
+  }
   .cta-pill::before{
     content:"";
     position:absolute; inset:0;
@@ -123,6 +139,7 @@
     opacity:1;
   }
   .reveal-center{
+    /* Animation "s'ouvre depuis le centre" utilisée par plusieurs boutons */
     opacity:0;
     transform:scaleX(0);
     transform-origin:center;
@@ -138,7 +155,9 @@
     100%{transform:scaleX(1); opacity:1;}
   }
 
-  /* --- HERO PLEIN ECRAN (accueil uniquement) --- */
+  /* ==========================================================
+     GRAND BLOC / RIDEAU EN HAUT DE L'ACCUEIL (carrousel de 3 diapositives)
+     ========================================================== */
   .hero-full{
     position:relative;
     height:calc(100vh - var(--header-offset, 152px));
@@ -146,14 +165,17 @@
     overflow:hidden;
   }
   .cat-tag{
+    /* ⬅️ LE PETIT LABEL "DESIGN GRAPHIQUE" / "UI/UX DESIGN" / "AUDIOVISUEL"
+       C'est ici qu'on agrandit ce texte, comme demandé */
     position:absolute;
     top:22px; left:22px;
     background:var(--metal-petrol);
     color:var(--argent-clair);
-    font-size:12px;
+    font-size:clamp(20px, 3vw, 32px);   /* ⬅️ AGRANDI (était 12px) */
+    font-weight:600;
     letter-spacing:.06em;
     text-transform:uppercase;
-    padding:8px 18px;
+    padding:14px 26px;                  /* ⬅️ un peu plus grand aussi pour accompagner le texte */
     z-index:3;
   }
   .slide{
@@ -167,6 +189,7 @@
   .slide3{background:linear-gradient(150deg, #392E42 0%, #6F5774 35%, #9C8FA6 70%, #6F5774 100%);}
 
   .dots{
+    /* Les petits points en bas du rideau qui indiquent la diapositive active */
     position:absolute; bottom:76px; left:50%; transform:translateX(-50%);
     display:flex; gap:8px; z-index:3;
   }
@@ -174,6 +197,7 @@
   .dot.active{opacity:1; background:var(--violet-cta);}
 
   .scroll-arrow{
+    /* La petite flèche vers le bas pour inviter à scroller */
     position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
     width:44px; height:44px;
     background:var(--metal-petrol);
@@ -187,7 +211,9 @@
     z-index:3;
   }
 
-  /* --- SECTION "JE ME PRESENTE" --- */
+  /* ==========================================================
+     SECTION "JE ME PRÉSENTE" — photo + texte de présentation
+     ========================================================== */
   .section-suis{
     padding:60px clamp(20px, 4vw, 32px) 80px;
     max-width:1440px;
@@ -203,6 +229,7 @@
     text-align:center;
   }
   .bio-grid{
+    /* Rangée : photo à gauche, texte à droite */
     display:flex;
     gap:48px;
   }
@@ -218,6 +245,7 @@
     justify-content:space-between;
   }
   .bio-tags{
+    /* Les petites étiquettes (compétences/mots-clés) au-dessus du texte */
     display:flex; gap:12px; flex-wrap:wrap;
     margin-bottom:20px;
   }
@@ -228,24 +256,26 @@
     color:var(--ink);
   }
   .bio-text p{
-    font-size:15px;
-    line-height:1.7;
+    /* ⬅️ LE TEXTE "JE M'APPELLE..." — agrandi et plus impactant */
+    font-size:19px;                 /* ⬅️ AGRANDI (était 15px) */
+    line-height:1.6;
     color:var(--ink);
     margin-bottom:26px;
-    max-width:560px;
+    max-width:620px;                /* ⬅️ un peu élargi pour accompagner le texte plus grand */
   }
   .bio-buttons{display:flex; gap:12px; flex-wrap:wrap;}
   .btn-metal{
+    /* ⬅️ LES BOUTONS "EN SAVOIR PLUS" / "VOIR LES PROJETS" — agrandis */
     position:relative;
     overflow:hidden;
     z-index:1;
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
-    font-size:14px;
+    font-size:17px;                 /* ⬅️ AGRANDI (était 14px) */
     color:var(--argent-clair);
     background:var(--metal-petrol);
     border:none;
-    padding:13px 26px;
+    padding:17px 34px;              /* ⬅️ AGRANDI (était 13px 26px) */
     text-decoration:none;
     transition:color .5s ease;
   }
@@ -264,7 +294,10 @@
     opacity:1;
   }
 
-  /* --- SECTION "MES PROJETS" (façon Vogue / Numéro) --- */
+  /* ==========================================================
+     SECTION "MES PROJETS" — grille éditoriale façon magazine
+     (1 grand projet vedette à gauche + mini-cartes à droite)
+     ========================================================== */
   .section-projets{
     padding:40px clamp(20px, 4vw, 32px) 90px;
     max-width:1440px;
@@ -285,6 +318,7 @@
     align-items:start;
   }
   .featured-project{
+    /* Le grand projet mis en avant, à gauche, qui reste "collé" pendant le scroll */
     position:sticky;
     top:24px;
     display:block;
@@ -295,6 +329,7 @@
     overflow:hidden;
   }
   .featured-project::after{
+    /* Léger dégradé sombre en bas pour que le texte reste lisible sur la photo */
     content:"";
     position:absolute; inset:0;
     background:linear-gradient(0deg, rgba(20,18,22,.75), transparent 55%);
@@ -303,6 +338,7 @@
     position:absolute; left:20px; right:20px; bottom:20px; z-index:2;
   }
   .mini-tag{
+    /* Petite étiquette de catégorie sur chaque mini-carte de projet */
     display:inline-block;
     font-size:11px;
     letter-spacing:.06em;
@@ -324,6 +360,7 @@
     opacity:.85;
   }
   .side-cols{
+    /* Les 2 colonnes de mini-cartes à droite du projet vedette */
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:24px;
@@ -333,7 +370,7 @@
     flex-direction:column;
     gap:24px;
   }
-  .col-offset{margin-top:60px;}
+  .col-offset{margin-top:60px;} /* décale une des deux colonnes pour un effet "quinconce" */
   .mini-card{
     display:flex;
     flex-direction:column;
@@ -363,12 +400,15 @@
     color:var(--argent-fonce);
     white-space:nowrap;
   }
+  /* Dégradés de secours utilisés tant qu'une vraie vignette n'est pas chargée */
   .thumb-1{background:linear-gradient(135deg,#8A7A94,#392E42);}
   .thumb-2{background:linear-gradient(135deg,#B9BBC1,#7C7E84);}
   .thumb-3{background:linear-gradient(135deg,#6F5774,#9C8FA6);}
   .thumb-4{background:linear-gradient(135deg,#7C7E84,#4A4C52);}
 
-  /* --- BANDEAU OUTILS (défilant, légèrement penché, 2 tons métal) --- */
+  /* ==========================================================
+     BANDEAU OUTILS — le texte qui défile en continu, légèrement penché
+     ========================================================== */
   .tools-marquee-wrap{
     overflow:hidden;
     transform:rotate(-1.5deg) scale(1.03);
@@ -391,6 +431,7 @@
     animation:marquee-scroll 26s linear infinite;
   }
   .marquee-row.reverse{
+    /* La 2e rangée défile dans l'autre sens, un peu plus lentement */
     animation-direction:reverse;
     animation-duration:30s;
   }
@@ -410,19 +451,23 @@
     100%{transform:translateX(-33.3333%);}
   }
   .cta-text{
+    /* Le texte "Mon profil a retenu votre attention ?" juste avant le footer */
     text-align:center;
     font-size:15px;
     color:var(--ink);
     margin-top:24px;
   }
 
-  /* --- FOOTER --- */
+  /* ==========================================================
+     FOOTER (pied de page, commun à toutes les pages)
+     ========================================================== */
   .footer{
     background:var(--metal-petrol);
     padding:70px 40px 40px;
     text-align:center;
   }
   .footer h3{
+    /* Le très grand "Discutons" */
     font-family:'DM Serif Display', serif;
     font-weight:400;
     font-size:clamp(48px, 11vw, 124px);
@@ -456,7 +501,9 @@
     opacity:1;
   }
 
-  /* --- APPARITION PROGRESSIVE AU SCROLL --- */
+  /* ==========================================================
+     APPARITION PROGRESSIVE AU SCROLL — utilisée un peu partout sur le site
+     ========================================================== */
   .reveal{
     opacity:0;
     transform:translateY(36px);
@@ -470,7 +517,9 @@
   .reveal-delay-2{transition-delay:.24s;}
   .reveal-delay-3{transition-delay:.36s;}
 
-  /* --- MENU MOBILE (hamburger) --- */
+  /* ==========================================================
+     MENU MOBILE (le "hamburger" qui n'apparaît qu'en petit écran)
+     ========================================================== */
   .hamburger{
     display:none;
     flex-direction:column;
@@ -494,6 +543,7 @@
   .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
   .mobile-menu-overlay{
+    /* Le grand panneau violet qui recouvre l'écran quand le menu mobile est ouvert */
     display:none;
     position:fixed;
     inset:0;
@@ -516,7 +566,9 @@
     padding:14px 40px;
   }
 
-  /* --- RESPONSIVE MOBILE --- */
+  /* ==========================================================
+     RESPONSIVE MOBILE — tout ce qui s'adapte en dessous de 760px de large
+     ========================================================== */
   @media (max-width: 760px){
     .nav-links{display:none;}
     .hamburger{display:flex;}
@@ -536,6 +588,10 @@
 
     .back-to-top{bottom:150px; right:16px;}
   }
+
+  /* ==========================================================
+     FOOTER — navigation, copyright, barre du bas
+     ========================================================== */
   .footer-nav{
     display:flex;
     justify-content:center;
@@ -562,6 +618,7 @@
     margin-bottom:40px;
   }
   .footer-bottom-bar{
+    /* La toute dernière barre grise : mentions légales / mail / LinkedIn */
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -577,6 +634,7 @@
     text-decoration:none;
   }
   .back-to-top{
+    /* Le petit bouton flottant "remonter en haut de page" */
     position:fixed;
     bottom:90px; right:24px;
     width:44px; height:44px;

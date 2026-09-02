@@ -171,7 +171,7 @@
     top:22px; left:22px;
     background:var(--metal-petrol);
     color:var(--argent-clair);
-    font-size:clamp(20px, 3vw, 32px);   /* ⬅️ AGRANDI (était 12px) */
+    font-size:clamp 13px, 1.6vw, 16px) ;   /* ⬅️ AGRANDI (était 12px) */
     font-weight:600;
     letter-spacing:.06em;
     text-transform:uppercase;
